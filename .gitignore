@@ -1,0 +1,10 @@
+.cache/
+.history/
+.lh/
+build/
+*.log
+CMakeLists.txt.user
+.cmake-format.yaml
+.clang-format
+.idea/
+.vscode/

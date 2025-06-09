@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>JSONMainWindow</class>
+ <widget class="QMainWindow" name="JSONMainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>JSON Viewer</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">   /* 按钮样式 - 更紧凑的尺寸 */
+   QPushButton {
+       padding: 2px 4px;
+       min-width: 30px;
+       max-width:  45px;
+       min-height: 18px;
+       max-height: 18px;
+       font-size: 10px;
+       background-color: #ffffff;
+       border: 1px solid #d1d5db;
+       border-radius: 3px;
+   }
+   
+   QPushButton:hover {
+       background-color: #f3f4f6;
+   }
+   
+   QPushButton:pressed {
+       background-color: #e5e7eb;
+   }
+</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <layout class="QHBoxLayout" name="topButtonLayout">
+      <property name="spacing">
+       <number>3</number>
+      </property>
+      <property name="leftMargin">
+       <number>6</number>
+      </property>
+      <item>
+       <widget class="QCheckBox" name="jsonTextWrapCheckBox">
+        <property name="toolTip">
+         <string>文本数据是否自动换行</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>8000</number>
+        </property>
+        <property name="text">
+         <string>换行</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="formatButton">
+        <property name="text">
+         <string>格式化</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="jsonAutoFormatCheckBox">
+        <property name="toolTip">
+         <string>文本数据变化JSON数据是否自动格式化</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>8000</number>
+        </property>
+        <property name="text">
+         <string>自动</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="foldButton">
+        <property name="text">
+         <string>折叠</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="removeSpacesButton">
+        <property name="text">
+         <string>删除空格</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="removeEscapeButton">
+        <property name="text">
+         <string>去除转义</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="jsonItemHideCheckBox">
+        <property name="toolTip">
+         <string>是否隐藏不匹配的节点</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>8000</number>
+        </property>
+        <property name="text">
+         <string>隐藏</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="searchLineEdit">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>240</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>80</width>
+          <height>0</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="searchButton">
+        <property name="text">
+         <string>查询</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="nextButton">
+        <property name="text">
+         <string>下一个</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="previousButton">
+        <property name="text">
+         <string>上一个</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="expandAllButton">
+        <property name="text">
+         <string>全部展开</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="collapseAllButton">
+        <property name="text">
+         <string>全部收缩</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="aboutButton">
+        <property name="text">
+         <string>关于</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="jsonTabWidget">
+      <property name="tabsClosable">
+       <bool>true</bool>
+      </property>
+      <property name="tabBarAutoHide">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

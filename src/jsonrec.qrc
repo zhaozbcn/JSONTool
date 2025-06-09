@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/array.gif</file>
+        <file>resources/bool.gif</file>
+        <file>resources/defult.gif</file>
+        <file>resources/null.gif</file>
+        <file>resources/number.gif</file>
+        <file>resources/object.gif</file>
+        <file>resources/string.gif</file>
+        <file>resources/json.ico</file>
+    </qresource>
+</RCC>
