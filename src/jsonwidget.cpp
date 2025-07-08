@@ -150,6 +150,7 @@ void JSONWidget::formatJSON()
     ui->jsonTreeView->resizeColumnToContents(0);
     ui->jsonTreeView->update();
     ui->jsonTreeView->collapseAll();
+    this->showNullValueItem(nullptr, true);
 }
 
 // 处理JSON对象
@@ -310,11 +311,39 @@ void JSONWidget::removeEscape()
     ui->jsonTextEdit->setPlainText(unescapedJson);
 }
 
+void JSONWidget::showNullValues(bool show)
+{
+    this->showNullValueFlag = show;
+    this->showNullValueItem(nullptr, true);
+}
+
 void JSONWidget::hideUnSelectedNode(bool hide)
 {
     jsonTreeHideUnSelectedNode = hide;
     searchJSON(searchText);
 }
+
+void JSONWidget::showNullValueItem(QStandardItem *parent, bool isRoot)
+{
+    if (isRoot) {
+        QStandardItemModel* model = qobject_cast<QStandardItemModel*>(ui->jsonTreeView->model());
+        if (!model) return;
+        parent = model->invisibleRootItem();
+    }
+    if (!parent) return;
+
+    for (int i = 0; i < parent->rowCount(); ++i) {
+        QStandardItem* item = parent->child(i);
+        if (!item) continue;
+        if (item->rowCount() > 0) {
+            showNullValueItem(item, false);
+        }
+        if (item->data(Qt::UserRole).isNull()) {
+            setTreeViewItemHidden(item->index(), !this->showNullValueFlag);
+        }
+    }
+}
+
 
 void JSONWidget::searchJSON(const QString& searchText)
 {
@@ -690,6 +719,7 @@ void JSONWidget::collapseAllChildren()
         collapseChildren(index);
     }
 }
+
 
 void JSONWidget::clear_data()
 {

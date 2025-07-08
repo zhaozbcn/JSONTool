@@ -93,8 +93,8 @@ if(NOT EXISTS ${CMAKE_BINARY_DIR}/${PROJECT_NAME}_autogen/include/)
 endif()
 
 # 在CMake配置阶段复制文件
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/src/codeeditor.h
-     DESTINATION ${CMAKE_BINARY_DIR}/${PROJECT_NAME}_autogen/include/)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/codeeditor.h
+              ${CMAKE_BINARY_DIR}/${PROJECT_NAME}_autogen/include/codeeditor.h COPYONLY)
 
 # Windows平台图标设置
 if(WIN32)
@@ -105,4 +105,9 @@ if(WIN32)
     # 设置资源编译选项
     set(CMAKE_RC_COMPILER_INIT windres)
     enable_language(RC)
+endif()
+if(MSVC)
+    add_compile_options(/W4 /WX)
+else()
+    add_compile_options(-Wall -Wextra -Werror)
 endif()

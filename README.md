@@ -9,6 +9,9 @@
 **格式化**
 ![格式化效果图](app_images/format.png)
 
+**是否展示传为null的节点**
+![格式化效果图](app_images/showNull.gif)
+
 
 **JSON树节点菜单**
 ![JSON树节占菜单](app_images/node_contex_menu.png)

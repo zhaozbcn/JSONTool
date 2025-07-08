@@ -28,6 +28,10 @@ public:
     bool getJsonTextLineWrap() const;
     void setJsonTextLineWrap(bool newJsonTextLineWrap);
 
+    /**
+     * @brief 自动格式化
+     * @param newJsonTextAutoFormat
+     */
     void setJsonTextAutoFormat(bool newJsonTextAutoFormat);
 
     /**
@@ -38,6 +42,12 @@ public:
      * @brief 删除文本转义字符
      */
     void removeEscape();
+
+    /**
+     * @brief 隐藏空值
+     * @param hide
+     */
+    void showNullValues(bool show);
 
     /**
      * @brief 删除文本转义字符
@@ -69,11 +79,18 @@ private slots:
     void expandAllChildren();
     void collapseAllChildren();
 
+
+
 private:
     Ui::JSONWidget *ui;
     QList<QStandardItem*> matchedItems; // 存储匹配的节点
     int currentMatchIndex = -1; // 当前选中的匹配项索引
     bool jsonTextChanged = false;
+
+    /**
+     * @brief 隐藏控制
+     */
+    bool showNullValueFlag = false;
     /**
      * @brief 文本换行
      */
@@ -84,13 +101,15 @@ private:
     bool jsonTextAutoFormat = false;
 
     /**
-     * @brief 自动格式化
+     * @brief 隐藏未选中的节点
      */
     bool jsonTreeHideUnSelectedNode = false;
 
     QString searchText;
 
     void clear_data();
+
+    void showNullValueItem(QStandardItem *parent, bool isRoot);
 
     void restoreSplitterState();
     void saveSplitterState();

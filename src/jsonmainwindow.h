@@ -36,6 +36,13 @@ private:
     void addJSONWidget();
 private slots:
 
+
+    /**
+     * @brief 显示空值
+     */
+    void showNullCheckBox_checkStateChanged(const Qt::CheckState &state);
+
+
     /**
      * @brief 格式化文本
      */

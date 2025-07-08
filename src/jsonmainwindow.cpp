@@ -38,6 +38,8 @@ JSONMainWindow::JSONMainWindow(QWidget *parent)
     // 设置窗口图标
     setWindowIcon(QIcon(":/resources/json.png"));
 
+    connect(ui->showNullCheckBox, &QCheckBox::checkStateChanged, this, &JSONMainWindow::showNullCheckBox_checkStateChanged);
+
     connect(ui->jsonTextWrapCheckBox, &QCheckBox::checkStateChanged, this, &JSONMainWindow::jsonTextWrapCheckBox_checkStateChanged);
     connect(ui->jsonAutoFormatCheckBox, &QCheckBox::checkStateChanged, this, &JSONMainWindow::jsonAutoFormatCheckBox_checkStateChanged);
     connect(ui->formatButton, &QPushButton::clicked, this, &JSONMainWindow::formatButton_clicked);
@@ -83,6 +85,20 @@ void JSONMainWindow::addJSONWidget()
 
     int index = ui->jsonTabWidget->addTab(jsonWidget, QString("New %1").arg(ui->jsonTabWidget->count() +1));
     ui->jsonTabWidget->setCurrentIndex(index);
+}
+
+void JSONMainWindow::showNullCheckBox_checkStateChanged(const Qt::CheckState &state)
+{
+    for (int i = 0; i < ui->jsonTabWidget->count(); ++i) {
+        // 获取每个tab中的widget
+        QWidget *widget = ui->jsonTabWidget->widget(i);
+        // 尝试转换为JSONWidget类型
+        JSONWidget *jsonWidget = qobject_cast<JSONWidget*>(widget);
+        if (jsonWidget) {
+            // 这里可以对每个JSONWidget进行操作
+            jsonWidget->showNullValues(state == Qt::Checked);
+        }
+    }
 }
 
 
